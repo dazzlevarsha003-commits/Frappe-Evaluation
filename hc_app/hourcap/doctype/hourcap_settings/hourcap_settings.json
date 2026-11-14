@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "creation": "2026-11-14 12:04:29.515698",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "delivery_email",
+  "low_hours_alert_threshold_percent",
+  "billing_cycle_start_day"
+ ],
+ "fields": [
+  {
+   "fieldname": "delivery_email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Delivery Email",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "default": "85",
+   "fieldname": "low_hours_alert_threshold_percent",
+   "fieldtype": "Percent",
+   "label": "Low Hours Alert Threshold Percent"
+  },
+  {
+   "default": "1",
+   "fieldname": "billing_cycle_start_day",
+   "fieldtype": "Int",
+   "label": "Billing Cycle Start Day"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-11-14 12:06:09.348261",
+ "modified_by": "Administrator",
+ "module": "HourCap",
+ "name": "Hourcap Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

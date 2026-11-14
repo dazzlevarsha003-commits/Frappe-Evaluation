@@ -5,6 +5,50 @@ app_description = "Frappe Evaluation"
 app_email = "varshinipunniamoorthi33@gmail.com"
 app_license = "mit"
 
+
+""" fixtures = [
+    {
+        "dt": "Client",
+        "filters": [
+            ["client_name", "in", [
+                "Halden Foods",
+                "Orbit Fitness",
+                "Tessel Bank",
+                "Paperkite Books"
+            ]]
+        ]
+    },
+
+    {
+        "dt" : "Role",
+        "filters" : [
+            ["name", "in", [
+                "HC Team Member", "HC Account Manager", "HC Delivery Head"
+            ]
+            ]
+        ]
+    },
+
+    {
+        "dt" : "DocPerm",
+        "filters" : [
+            ["role", "in", [
+                "HC Team Member", "HC Account Manager", "HC Delivery Head"
+            ]
+            ]
+        ]
+    }
+]
+
+permission_query_conditions = {
+    "Timesheet" : "hc_app.permission.timesheet_query"
+}"""
+
+# has_permission = {
+# 	"Event": "frappe.desk.doctype.event.event.has_permission",
+# }
+
+
 # Apps
 # ------------------
 
@@ -147,13 +191,7 @@ app_license = "mit"
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+
 
 # Document Events
 # ---------------

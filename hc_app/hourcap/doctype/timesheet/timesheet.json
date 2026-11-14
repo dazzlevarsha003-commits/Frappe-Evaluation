@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "TS-.YYYY.-.#####",
+ "creation": "2026-11-14 12:07:11.410702",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_opvu",
+  "amended_from",
+  "team_member",
+  "client",
+  "retainer",
+  "work_date",
+  "description",
+  "time_logs_section",
+  "time_log",
+  "totals_and_status_section",
+  "total_hours",
+  "remaining_hours_at_submission",
+  "status",
+  "approved_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_opvu",
+   "fieldtype": "Section Break",
+   "label": "Timesheet Details"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Timesheet",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "team_member",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Team Member",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client",
+   "fieldtype": "Link",
+   "label": "Client ",
+   "options": "Client",
+   "reqd": 1
+  },
+  {
+   "fieldname": "retainer",
+   "fieldtype": "Link",
+   "label": "Retainer",
+   "options": "Retainer",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "work_date",
+   "fieldtype": "Date",
+   "label": "Work Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "time_logs_section",
+   "fieldtype": "Section Break",
+   "label": "Time Logs"
+  },
+  {
+   "fieldname": "time_log",
+   "fieldtype": "Table",
+   "label": "Time Log",
+   "options": "Time Log"
+  },
+  {
+   "fieldname": "totals_and_status_section",
+   "fieldtype": "Section Break",
+   "label": "Totals and Status"
+  },
+  {
+   "fieldname": "total_hours",
+   "fieldtype": "Float",
+   "label": "Total Hours",
+   "read_only": 1
+  },
+  {
+   "fieldname": "remaining_hours_at_submission",
+   "fieldtype": "Float",
+   "label": "Remaining Hours at Submission",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status ",
+   "options": "Draft\nPending\nApproval\nApproved\nRejected\nInvoiced\nCancelled"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-11-14 14:25:21.189265",
+ "modified_by": "Administrator",
+ "module": "HourCap",
+ "name": "Timesheet",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "if_owner": 1,
+   "read": 1,
+   "role": "HC Team Member",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "if_owner": 1,
+   "read": 1,
+   "role": "HC Account Manager",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "HC Delivery Head",
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
