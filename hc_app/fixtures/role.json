@@ -1,0 +1,41 @@
+[
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-11-14 14:09:59.761475",
+  "name": "HC Team Member",
+  "restrict_to_domain": null,
+  "role_name": "HC Team Member",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-11-14 14:10:26.462213",
+  "name": "HC Account Manager",
+  "restrict_to_domain": null,
+  "role_name": "HC Account Manager",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-11-14 14:16:42.605489",
+  "name": "HC Delivery Head",
+  "restrict_to_domain": null,
+  "role_name": "HC Delivery Head",
+  "two_factor_auth": 0
+ }
+]

@@ -6,7 +6,7 @@ app_email = "varshinipunniamoorthi33@gmail.com"
 app_license = "mit"
 
 
-""" fixtures = [
+fixtures = [
     {
         "dt": "Client",
         "filters": [
@@ -42,7 +42,9 @@ app_license = "mit"
 
 permission_query_conditions = {
     "Timesheet" : "hc_app.permission.timesheet_query"
-}"""
+}
+
+after_install = "hc_app.install.after_install"
 
 # has_permission = {
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",

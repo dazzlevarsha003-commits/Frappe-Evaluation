@@ -1,0 +1,38 @@
+[
+ {
+  "account_manager": "am1@gmail.com",
+  "client_name": "Halden Foods",
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Client",
+  "modified": "2026-11-15 22:31:40.470724",
+  "name": "Halden Foods"
+ },
+ {
+  "account_manager": "am1@gmail.com",
+  "client_name": "Orbit Fitness",
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Client",
+  "modified": "2026-11-16 10:28:58.135555",
+  "name": "Orbit Fitness"
+ },
+ {
+  "account_manager": "am2@gmail.com",
+  "client_name": "Tessel Bank",
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Client",
+  "modified": "2026-11-16 10:29:14.780165",
+  "name": "Tessel Bank"
+ },
+ {
+  "account_manager": "am2@gmail.com",
+  "client_name": "Paperkite Books",
+  "description": null,
+  "docstatus": 0,
+  "doctype": "Client",
+  "modified": "2026-11-16 10:29:36.719018",
+  "name": "Paperkite Books"
+ }
+]
