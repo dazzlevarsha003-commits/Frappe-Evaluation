@@ -3,6 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils import flt
 
 
 class Timesheet(Document):
@@ -32,7 +33,6 @@ class Timesheet(Document):
                 "The Timesheet client must match the linked Retainer client"
             )
 
-    
     def before_submit(self):
 
         retainer = frappe.db.get_value(
@@ -62,8 +62,6 @@ class Timesheet(Document):
                 f"{excess_hours:g} hours. "
                 f"Only {remaining_hours:g} hours actually remain."
             )
-
-    
 
     def on_submit(self):
 
@@ -120,5 +118,44 @@ class Timesheet(Document):
 
     #def on_update(self):
         #self.save()
+
+    def before_print(self, print_settings=None):
+        self.print_summary = (
+            f"{self.team_member} - "
+            f"{self.client} - "
+            f"{self.work_date}"
+        )
+
+
+@frappe.whitelist()
+def get_retainer_status(retainer):
+
+    if not retainer:
+        frappe.throw("Please select a Retainer.")
+
+    retainer_doc = frappe.get_doc("Retainer", retainer)
+
+    if not frappe.has_permission("Retainer", "read", doc=retainer_doc):
+        frappe.throw("You do not have permission to access this Retainer.")
+
+    total_hours = flt(retainer_doc.total_hours)
+
+    used_hours = frappe.db.sql("""
+        SELECT COALESCE(SUM(total_hours), 0)
+        FROM `tabTimesheet`
+        WHERE retainer = %s
+        AND docstatus = 1
+    """, (retainer,))[0][0]
+
+    used_hours = flt(used_hours)
+
+    remaining_hours = total_hours - used_hours
+
+    return {
+        "total_hours": total_hours,
+        "used_hours": used_hours,
+        "remaining_hours": remaining_hours
+    }
+
 
 

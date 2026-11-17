@@ -46,6 +46,21 @@ permission_query_conditions = {
 
 after_install = "hc_app.install.after_install"
 
+doc_events = {
+    "*": {
+        "on_update": "hc_app.audit.log_change",
+        "on_submit": "hc_app.audit.log_change",
+        "on_cancel": "hc_app.audit.log_change",
+    }
+}
+
+
+scheduler_events = {
+    "daily": [
+        "hc_app.hourcap.tasks.check_retainer_thresholds"
+    ]
+}
+
 # has_permission = {
 # 	"Event": "frappe.desk.doctype.event.event.has_permission",
 # }

@@ -49,4 +49,80 @@ frappe.get_value --> retrieves only the required field value from the given reco
 
 -----
 
+#I1 - Parameterized SQL vs f-string 
+
+1. f-string SQL 
+
+client = "ABC Company"
+query = f"""
+    SELECT name, team_member, client, total_hours, work_date
+    FROM `tabTimesheet`
+    WHERE status = 'Pending Approval'
+    AND client = '{client}'
+"""
+--> Directly inserts Python variable values into SQL. Vulnerable to SQL injection ( ex : client = " ' or 1=1 --") when user input is involved. 
+
+2. Parameterized SQL
+
+select name, team_member, client, total_hours, work_date, status
+from `tabTimesheet`
+where status = 'Pending Approval'
+and (
+    %(client)s is null
+    or %(client)s = ''
+    or client = %(client)s
+)
+order by work_date desc 
+--> Uses named placeholders (%(client)s) for dynamic values. Values are passed separately and safely bound by the database driver. Prevents SQL injection through parameter binding. Supports optional filters without dynamically constructing SQL.
+
+-----
+
+#L1 - REST API
+
+1. REQUEST:
+curl -G "http://localhost:8000/api/resource/Timesheet" \
+-u "API_KEY:API_SECRET" \
+--data-urlencode 'fields=["name","client","total_hours"]'
+
+--->Using built-in REST APIs for DocTypes - Tested the Timesheet read operation using curl.
+
+2. RESPONSE: 
+{"data":[{"name":"TS-2026-00002","client":"Orbit Fitness","total_hours":0.0},{"name":"TS-2026-00003","client":"Paperkite Books","total_hours":0.0},{"name":"TS-2026-00004","client":"Tessel Bank","total_hours":0.0},{"name":"TS-2026-00005","client":"Halden Foods","total_hours":21.0},{"name":"TS-2026-00006","client":"Halden Foods","total_hours":5.0},{"name":"TS-2026-00008","client":"Halden Foods","total_hours":1.0},{"name":"TS-2026-00009","client":"Halden Foods","total_hours":1.0},{"name":"TS-2026-00010","client":"Halden Foods","total_hours":1.0},{"name":"TS-2026-00011","client":"Orbit Fitness","total_hours":3.0},{"name":"TS-2026-00012","client":"Orbit Fitness","total_hours":4.0},{"name":"TS-2026-00013","client":"Orbit Fitness","total_hours":3.0},{"name":"TS-2026-00014","client":"Orbit Fitness","total_hours":1.0},{"name":"TS-2026-00015","client":"Paperkite Books","total_hours":2.0},{"name":"TS-2026-00016","client":"Paperkite Books","total_hours":2.0},{"name":"TS-2026-00017","client":"Tessel Bank","total_hours":10.0},{"name":"TS-2026-00018","client":"Orbit Fitness","total_hours":4.0},{"name":"TS-2026-00019","client":"Halden Foods","total_hours":6.0},{"name":"TS-2026-00020","client":"Orbit Fitness","total_hours":5.0},{"name":"TS-2026-00021","client":"Paperkite Books","total_hours":31.0},{"name":"TS-2026-00022","client":"Tessel Bank","total_hours":38.0}]}
+
+--> JSON output of the twenty records for the requested fields
+
+#CUSTOM WHITELISTED FUNCTION 
+
+1. Test result of whitelisted API function
+
+COMMAND:
+curl -G "http://localhost:8000/api/method/hc_app.api.get_retainer_status" \
+-u "a72872efacdf966:40c2909cd48e4c8" \
+--data-urlencode "retainer_name=RET-2026-0001"
+RESULT:
+{"message":{"purchased":30.0,"used":27.0,"remaining":3.0,"utilization_percent":90.0}}
+
+2. 404 Error test
+
+COMMAND:
+curl -i -G "http://localhost:8000/api/method/hc_app.api.get_retainer_status" \
+-u "a72872efacdf966:40c2909cd48e4c8" \
+--data-urlencode "retainer_name=INVALID-RETAINER"
+RESULT:
+HTTP/1.1 404 NOT FOUND
+Server: Werkzeug/3.1.9 Python/3.14.6
+Date: Tue, 17 Nov 2026 14:17:38 GMT
+Content-Type: application/json
+Content-Length: 33
+Cache-Control: no-store,no-cache,must-revalidate,max-age=0
+Set-Cookie: sid=Guest; Expires=Tue, 24 Nov 2026 16:17:38 GMT; Max-Age=612000; HttpOnly; Path=/; SameSite=Lax
+Set-Cookie: system_user=no; Path=/; SameSite=Lax
+Set-Cookie: full_name=Guest; Path=/; SameSite=Lax
+Set-Cookie: user_id=Guest; Path=/; SameSite=Lax
+Set-Cookie: user_lang=en; Path=/; SameSite=Lax
+Connection: close
+
+{"message":{"error":"Not found"}}
+
+
 

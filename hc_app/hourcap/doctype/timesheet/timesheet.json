@@ -106,7 +106,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status ",
-   "options": "Draft\nPending\nApproval\nApproved\nRejected\nInvoiced\nCancelled"
+   "options": "Draft\nPending Approval\nApproved\nRejected\nInvoiced\nCancelled"
   },
   {
    "allow_on_submit": 1,
@@ -121,7 +121,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-11-16 12:20:20.193573",
+ "modified": "2026-11-17 12:15:21.637245",
  "modified_by": "Administrator",
  "module": "HourCap",
  "name": "Timesheet",
